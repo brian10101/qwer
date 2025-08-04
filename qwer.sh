@@ -1,6 +1,28 @@
 #!/bin/bash
 
-#VERSION: v2
+VERSION="3"
+
+## --help and --version options
+
+case "$1" in
+    --help) 
+        echo "qwer - A tool to clear terminal and return 'ls', the current time, and working directory all at once in a user firendly view" 
+        echo "Usage: qwer"
+        echo ""
+        echo "Options:"
+        echo "  --help - Show this message"
+        echo "  --version - Show version number"
+        echo "Uninstall:"
+        echo "Navegate to the qwer directory"
+        echo "Run 'bash uninstall.sh'"
+        exit 0
+        ;;
+    --version)
+        echo "qwer: V$VERSION"
+        exit 0
+        ;;
+esac                
+
 
 #Function to convert 24-hour time to 12-hour format without seconds
 convert_tim() {
