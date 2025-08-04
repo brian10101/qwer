@@ -39,7 +39,7 @@ total_un() {
 check_qwer_rm() {
     check_qwer=$(qwer 2>&1)
 
-    if [ "$check_qwer" = "uninstall.sh: line 39: qwer: command not found" ]; then
+    if [ "$check_qwer" = "uninstall.sh: line 40: qwer: command not found" ]; then
         echo "- qwer has been removed from /usr/local/bin/"
     else 
         echo "Error: qwer could not be removed from" /usr/local/bin/
@@ -53,11 +53,11 @@ who_run
 echo "What type of Uninstall do you want?"
 echo ""
 echo "Options:"
-echo "1. Partial: Removes qwer from /usr/local/bin/" 
-echo "Use case: To replace working version of qwer. Ex. If you make changes to bash.sh and want to update your working qwer, run this before using install to set your new version."
+echo "1. Partial: Removes qwer from '/usr/local/bin/'." 
+echo "Use case: To replace the working version of qwer. Example: If you make changes to bash.sh and want to update your working qwer, run this before using install to set your new version."
 echo ""
-echo "2. Total: Remove qwer from /usr/local/bin/ and removes qwer directory"
-echo "Use case: To completely delete everyting for qwer. Use before downloading new update from repo: https://github.com/brian10101/qwer or Uninstall Completely"
+echo "2. Total: Removes qwer from '/usr/local/bin/' and removes qwer directory"
+echo "Use case: To completely delete everything about qwer. Use before downloading new update from repo: https://github.com/brian10101/qwer or Uninstall Completely"
 echo ""
 echo "3. Exit: Leave this script"
 echo ""
@@ -67,7 +67,7 @@ read u_choice
 
 if ! (( u_choice )); then
     echo "Input is NOT a valid option!"
-    echo "Exiting unistaller. Please rerun to try again."
+    echo "Exiting uninstaller. Please rerun to try again."
     exit 0
 elif [ "$u_choice" -eq "1" ]; then
     partial_un
