@@ -10,7 +10,8 @@ who_run() {
     if [ "$crnt_usr" = "root" ]; then
     return 0
     else
-        echo "You are NOT root! Please run with root since some parts of this script interact with files in /usr/local/bin/"
+        echo "You are NOT root!"
+        echo "Please run with root since some parts of this script interact with files in /usr/local/bin/"
         exit 0
     fi
 }
