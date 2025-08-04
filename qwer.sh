@@ -1,19 +1,17 @@
 #!/bin/bash
 
-#VERSION: v1
+#VERSION: v2
 
-#CONTEXT: first ever version (v0.5) only had "clear && ls'
-
-# Function to convert 24-hour time to 12-hour format without seconds
+#Function to convert 24-hour time to 12-hour format without seconds
 convert_tim() {
-    # Get current time in HH:MM:SS format
+    #Get current time in HH:MM:SS format
     full_time=$(date +"%T")
 
-    # Extract hour and minute
+    #Extract hour and minute
     hour=$(echo "$full_time" | cut -d ':' -f 1)
     minute=$(echo "$full_time" | cut -d ':' -f 2)
 
-    # Convert to 12-hour format
+    #Convert to 12-hour format
     if [ "$hour" -gt 12 ]; then
         hour=$((hour - 12))
     elif [ "$hour" -eq 0 ]; then
@@ -23,9 +21,18 @@ convert_tim() {
     echo "Time: $hour:$minute"
 }
 
-# Call the function and store the result
+#Call the function and store the result
 time=$(convert_tim)
 
-# Output the final time
-clear && ls
-echo "$time"
+#stores curent directory in variable
+crnt_dir=$(pwd)
+
+#clears text from terminal
+clear
+
+#prints out time and current directory
+echo "┌──($time)-[$crnt_dir]
+└─ls"
+
+#lists all files and dirs
+ls
