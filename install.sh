@@ -2,11 +2,26 @@
 
 #Used to install qwer.sh and it usable from anywhere just by typing 'qwer'
 
+#Checking who is running the script
+
+who_run() {
+    crnt_usr=$(whoami)
+
+    if [ "$crnt_usr" = "root" ]; then
+    return 0
+    else
+        echo "You are NOT root! Please run with root since some parts of this script interact with files in /usr/local/bin/"
+        exit 0
+    fi
+}
+
+who_run
+
 #Check if qwer is already installed
 
 check_qwer=$(qwer 2>&1)
 
-if [ "$check_qwer" = "install.sh: line 7: qwer: command not found" ]; then
+if [ "$check_qwer" = "install.sh: line 22: qwer: command not found" ]; then
     echo "- Installing now"
 else 
     echo "Error: qwer is already installed"
@@ -18,4 +33,4 @@ cp qwer.sh /usr/local/bin/qwer
 
 chmod +x /usr/local/bin/qwer
 
-echo "- qwer has now be installed, to use it just anywhere just type qwer"
+echo "- qwer has now be installed! It can now by used by anyone anywhere just by writing 'qwer'"
