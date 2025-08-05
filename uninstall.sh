@@ -149,8 +149,7 @@ elif [ "$u_choice" -eq "1" ]; then
     echo "- Run install.sh"
 elif [ "$u_choice" -eq "2" ]; then
     total_un
-    check_qwer_rm
-    echo "- qwer directory has been removed"
+    check_qwer_rm_msg
     echo ""
     echo "- If you decide to use qwer again please go to https://github.com/brian10101/qwer"
     echo ""
