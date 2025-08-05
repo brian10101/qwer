@@ -17,6 +17,9 @@
     git clone https://github.com/brian10101/qwer.git
     cd qwer
     sudo su
+
+Then run
+
     bash install.sh
 
 Now that you have completed the installation, qwer could be used by anyone (No sudo or root needed), anywhere, just by typing `qwer`!
