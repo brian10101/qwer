@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Used to remove qwer from /usr/local/bin/ or to completely remove qwer and the qwer directory
+#Used to remove qwer from '/usr/local/bin/' or to completely remove qwer and the qwer directory
 
 #Making functions
 
@@ -13,12 +13,24 @@ who_run() {
     return 0
     else
         echo "X You are NOT root!"
-        echo "- Please run with root since some parts of this script interact with files in /usr/local/bin/"
+        echo "- Please run with root since some parts of this script interact with files in '/usr/local/bin/'"
         exit 0
     fi
 }
 
-#Partial: Removes qwer from /usr/local/bin/
+#Func checks if qwer was removed from '/usr/local/bin/'
+
+check_qwer_rm() {
+    check_qwer=$(qwer 2>&1 | cut -d ':' -f2- | sed 's/^ *//')
+
+    if [ "$check_qwer" = "qwer: command not found" ]; then
+        echo "- qwer has been removed from '/usr/local/bin/'"
+    else 
+        echo "X qwer could not be removed from '/usr/local/bin/'"
+    fi 
+}
+
+#Partial: Removes qwer from '/usr/local/bin/'
 
 partial_un() {
     cd /usr/local/bin/
@@ -28,21 +40,40 @@ partial_un() {
 #Total: Removes qwer from /usr/local/bin/ and removes qwer dir
 
 total_un() {
-    partial_un
-    cd ..
-    rm -rf qwer
-}
+    check_qwer_dir=$(check_qwer_rm)
 
-#Func checks if qwer was removed from /usr/local/bin/
+    if [ "$check_qwer_dir" = "- qwer has been removed from '/usr/local/bin/'" ]; then
+        echo "X Cannot run Total since total needs qwer to be present in 'usr/local/bin/'"
+        echo "- Please run 'bash install.sh' to readd qwer to the path and THEN try to do Total Unintall again"
+        echo "- Exiting scipt"
+        exit 0
+    else
+        partial_un
+        cd ..
+        check_crnt_dir=$(pwd)
+        echo "- Are you sure? And is the qwer directory here?(enter 'y' or 'n')"
+        read -r rm_dir_choice
 
-check_qwer_rm() {
-    check_qwer=$(qwer 2>&1 | cut -d ':' -f2- | sed 's/^ *//')
+        if [ "$rm_dir_choice" = "y" ]; then
+            if [ -d "qwer" ]; then
+                rm -rf qwer
+                echo "- 'qwer' directory removed."
+            else
+                echo "X 'qwer' directory not found in $check_crnt_dir"
+                echo "- Exiting script"
+                exit 1
+            fi
 
-    if [ "$check_qwer" = "qwer: command not found" ]; then
-        echo "- qwer has been removed from /usr/local/bin/"
-    else 
-        echo "X qwer could not be removed from" /usr/local/bin/
-    fi 
+        elif [ "$rm_dir_choice" = "n" ]; then
+            echo "- Thanks for changing your mind!"
+            echo "- Exiting script"
+            exit 0
+        else
+            echo "X Bad input, only 'y' for yes or 'n' for no"
+            echo "- Exiting script"
+            exit 0
+        fi
+    fi
 }
 
 #Checks if user is root to continue
@@ -62,7 +93,7 @@ echo "3. Exit: Leave this script"
 echo ""
 echo "Input option number (1, 2, or 3):"
 echo ""
-read u_choice
+read -r u_choice
 
 if ! (( u_choice )); then
     echo "X Input is NOT a valid option!"
