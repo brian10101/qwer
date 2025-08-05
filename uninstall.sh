@@ -46,6 +46,22 @@ check_qwer_rm_msg() {
     fi 
 }
 
+warning_art() {
+    echo "*                   *                                  "
+    echo " #                 #                                            "
+    echo "  #               #                                             "
+    echo "   #             #  ____  *  # #*  *       #  *         ____  *        "
+    echo "    #     #     #  #    # #  ##    #&##&   *  #&##&    #    # #   "
+    echo "     #   # #   #  #       #  #     #    #  #  #    #  #       #   "
+    echo "      # #   # #   &      ##  #     #    #  #  #    #  &      ##  "
+    echo "       *     *      &__#/ *  *     *    *  *  *    *    &__#/ #  "
+    echo "                                                              #  "
+    echo "                                                              #  "
+    echo "                                                            ,#'  "
+    echo "                                                      *\\#&/*'  "
+
+}
+
 #Partial: Removes qwer from '/usr/local/bin/'
 
 partial_un() {
@@ -152,6 +168,13 @@ elif [ "$u_choice" -eq "2" ]; then
     check_qwer_rm_msg
     echo ""
     echo "- If you decide to use qwer again please go to https://github.com/brian10101/qwer"
+    echo ""
+    warning_art
+    echo "WARNING: You are currently in a DELETED directory! "
+    echo "Please RUN 'cd ..'"
+    echo ""
+    echo "This happened becuase the uninstall.sh script deleted the 'qwer' directory(which was this one.)"
+    echo "No need to panic, just RUN 'cd ..' to return to a valid location"
     echo ""
     echo "- Thank you for trying qwer!"
 elif [ "$u_choice" -eq "3" ]; then
