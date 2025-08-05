@@ -22,14 +22,13 @@ who_run() {
 
 partial_un() {
     cd /usr/local/bin/
-    sudo rm qwer
+    rm qwer
 }
 
 #Total: Removes qwer from /usr/local/bin/ and removes qwer dir
 
 total_un() {
-    partial_und
-    crnt_dir=$(pwd)
+    partial_un
     cd ..
     rm -rf qwer
 }
