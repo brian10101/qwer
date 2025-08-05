@@ -18,15 +18,31 @@ who_run() {
     fi
 }
 
-#Func checks if qwer was removed from '/usr/local/bin/'
+#Checks if qwer was removed from '/usr/local/bin/' by checking if an executable named qwer exists in $PATH
 
 check_qwer_rm() {
-    check_qwer=$(qwer 2>&1 | cut -d ':' -f2- | sed 's/^ *//')
+    if ! command -v qwer >/dev/null 2>&1; then
+        return 0
+        #This means qwer is NOT installed
 
-    if [ "$check_qwer" = "qwer: command not found" ]; then
-        echo "- qwer has been removed from '/usr/local/bin/'"
     else 
+        return 1
+        #This means qwer IS installed
+    fi
+}
+
+#Uses check_qwer_rm and then returns a message for the user
+
+check_qwer_rm_msg() {
+    check_qwer_rm
+    check_qwer=$?
+    if [ "$check_qwer" = "0" ]; then
+        echo "- qwer has been removed from '/usr/local/bin/'"
+    elif [ "$check_qwer" = "1" ]; then
         echo "X qwer could not be removed from '/usr/local/bin/'"
+    else
+        echo "X Something went wrong qwer could not be removed "
+        
     fi 
 }
 
@@ -35,23 +51,46 @@ check_qwer_rm() {
 partial_un() {
     cd /usr/local/bin/
     rm qwer
+
+}
+
+#Undoes partial_un and checks if it was successful
+
+undo_partial_un(){
+    bash install.sh
+
+    check_qwer_rm
+    check_qwer=$?
+
+    if [ "$check_qwer" = "0" ]; then
+        echo "X Something went wrong. qwer could not be reinstalled in '/usr/local/bin/'"
+    elif [ "$check_qwer" = "1" ]; then
+        echo "- qwer was successfully reinstalled in '/usr/local/bin/'. You may now continue"
+    else
+        echo "X Something went wrong qwer could not be reinstalled "
+    fi
 }
 
 #Total: Removes qwer from /usr/local/bin/ and removes qwer dir
 
 total_un() {
-    check_qwer_dir=$(check_qwer_rm)
+    check_qwer_rm
+    check_qwer=$?
+    starting_dir=$(pwd)
 
-    if [ "$check_qwer_dir" = "- qwer has been removed from '/usr/local/bin/'" ]; then
-        echo "X Cannot run Total since total needs qwer to be present in 'usr/local/bin/'"
-        echo "- Please run 'bash install.sh' to readd qwer to the path and THEN try to do Total Unintall again"
+    if [ "$check_qwer" = "0" ]; then
+        echo "X Cannot run 'Total' since 'Total' needs qwer to be present in 'usr/local/bin/'"
+        echo "Attempting to reinstall qwer in in 'usr/local/bin/' for you."
+        undo_partial_un
+        echo "- Please try to run 'Total' again if automatic reinstall was successful"
         echo "- Exiting scipt"
         exit 0
     else
         partial_un
+        cd $starting_dir
         cd ..
         check_crnt_dir=$(pwd)
-        echo "- Are you sure? And is the qwer directory here?(enter 'y' or 'n')"
+        echo "- Are you sure? (enter 'y' or 'n')"
         read -r rm_dir_choice
 
         if [ "$rm_dir_choice" = "y" ]; then
@@ -66,6 +105,8 @@ total_un() {
 
         elif [ "$rm_dir_choice" = "n" ]; then
             echo "- Thanks for changing your mind!"
+            echo "-Restoring qwer being deleted from '/usr/local/bin/':"
+            undo_partial_un            
             echo "- Exiting script"
             exit 0
         else
@@ -102,7 +143,7 @@ if ! (( u_choice )); then
     exit 0
 elif [ "$u_choice" -eq "1" ]; then
     partial_un
-    check_qwer_rm
+    check_qwer_rm_msg
 elif [ "$u_choice" -eq "2" ]; then
     total_un
     check_qwer_rm

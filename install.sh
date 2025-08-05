@@ -18,7 +18,7 @@ who_run() {
 
 who_run
 
-#Check if qwer is already installed
+#Check if qwer is already installed ny useing command -v to search directories listed in $PATH including /usr/local/bin to see if there is an executable file called qwer
 
 if ! command -v qwer >/dev/null 2>&1; then
     echo "- Installing now"
