@@ -83,7 +83,7 @@ Input option number (1, 2, or 3):
 
 ```
 
-<p>Based on your Use case choose your option</p>
+<p>Based on your use case choose your option</p>
 
 <h2>End</h2>
 
