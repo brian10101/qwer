@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="3"
+VERSION="4"
 
 ## --help and --version options
 

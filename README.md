@@ -86,7 +86,18 @@ Input option number (1, 2, or 3):
 
 ```
 
-<p>Based on your use case choose your option</p>
+<p>Based on your use case choose your option.</p>
+<p>Each option is very user friendly, explains everything, and has tons of error handling, so I won't be walking you through each of them.</p>
+
+<h3>Important, Keep in mind:</h3>
+
+<p>After you run the 'Total' option in the uninstall.sh script you will get the follwing warning. However it is nothing to worry about. As long as you follow its instructions you will be ok!</p>
+
+<h4>Warning you will get:</h4>
+
+```
+
+```
 
 <h2>End</h2>
 

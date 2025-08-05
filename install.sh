@@ -35,3 +35,4 @@ chmod +x /usr/local/bin/qwer
 
 echo "- qwer has now been installed!"
 echo "- It can now be used by anyone, anywhere, just by typing 'qwer'."
+echo "- For more info, run 'qwer --help'."
