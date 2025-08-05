@@ -20,14 +20,13 @@ who_run
 
 #Check if qwer is already installed
 
-check_qwer=$(qwer 2>&1 | cut -d ':' -f2- | sed 's/^ *//')
-
-if [ "$check_qwer" = "qwer: command not found" ]; then
+if ! command -v qwer >/dev/null 2>&1; then
     echo "- Installing now"
 else 
     echo "X qwer is already installed"
     exit 0
-fi 
+fi
+
 
 #Copyig qwer.sh as qwer to /usr/local/bin to make it executable 
 cp qwer.sh /usr/local/bin/qwer 
