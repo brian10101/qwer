@@ -12,8 +12,8 @@ who_run() {
     if [ "$crnt_usr" = "root" ]; then
     return 0
     else
-        echo "You are NOT root!"
-        echo "Please run with root since some parts of this script interact with files in /usr/local/bin/"
+        echo "X You are NOT root!"
+        echo "- Please run with root since some parts of this script interact with files in /usr/local/bin/"
         exit 0
     fi
 }
@@ -42,7 +42,7 @@ check_qwer_rm() {
     if [ "$check_qwer" = "uninstall.sh: line 40: qwer: command not found" ]; then
         echo "- qwer has been removed from /usr/local/bin/"
     else 
-        echo "Error: qwer could not be removed from" /usr/local/bin/
+        echo "X qwer could not be removed from" /usr/local/bin/
     fi 
 }
 
@@ -66,8 +66,9 @@ echo ""
 read u_choice
 
 if ! (( u_choice )); then
-    echo "Input is NOT a valid option!"
-    echo "Exiting uninstaller. Please rerun to try again."
+    echo "X Input is NOT a valid option!"
+    echo "- Exiting uninstaller."
+    echo "- Please rerun to try again."
     exit 0
 elif [ "$u_choice" -eq "1" ]; then
     partial_un
@@ -77,14 +78,15 @@ elif [ "$u_choice" -eq "2" ]; then
     check_qwer_rm
     echo "- qwer directory has been removed"
     echo ""
-    echo "If you decide to use qwer again please go to https://github.com/brian10101/qwer"
+    echo "- If you decide to use qwer again please go to https://github.com/brian10101/qwer"
     echo ""
-    echo "Thank you for trying qwer!"
+    echo "- Thank you for trying qwer!"
 elif [ "$u_choice" -eq "3" ]; then
-    echo "-Exited uninstaller"
+    echo "- Exited uninstaller"
     exit 0
 else
-    echo "Input is NOT a valid option!"
-    echo "Exiting unistaller. Please rerun to try again."
+    echo "X Input is NOT a valid option!"
+    echo "- Exiting unistaller."
+    echo "- Please rerun to try again."
     exit 0
 fi 

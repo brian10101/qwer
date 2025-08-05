@@ -10,8 +10,8 @@ who_run() {
     if [ "$crnt_usr" = "root" ]; then
     return 0
     else
-        echo "You are NOT root!"
-        echo "Please run with root since some parts of this script interact with files in '/usr/local/bin/'"
+        echo "X You are NOT root!"
+        echo "- Please run with root since some parts of this script interact with files in '/usr/local/bin/'."
         exit 0
     fi
 }
@@ -25,7 +25,7 @@ check_qwer=$(qwer 2>&1)
 if [ "$check_qwer" = "install.sh: line 23: qwer: command not found" ]; then
     echo "- Installing now"
 else 
-    echo "Error: qwer is already installed"
+    echo "X qwer is already installed"
     exit 0
 fi 
 
@@ -35,4 +35,4 @@ cp qwer.sh /usr/local/bin/qwer
 chmod +x /usr/local/bin/qwer
 
 echo "- qwer has now been installed!"
-echo "It can now be used by anyone, anywhere, just by typing 'qwer'."
+echo "- It can now be used by anyone, anywhere, just by typing 'qwer'."

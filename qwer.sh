@@ -6,14 +6,14 @@ VERSION="3"
 
 case "$1" in
     --help) 
-        echo "qwer - A terminal tool to clear terminal and return 'ls', the current time, and working directory all at once in a user firendly view" 
+        echo "qwer - A terminal tool used to clear the terminal, return 'ls', current time, and working directory all at once in a user firendly view" 
         echo "Usage: qwer"
         echo ""
         echo "Options:"
         echo "  --help - Show this message"
         echo "  --version - Show version number"
         echo "Uninstall:"
-        echo "Navegate to qwer directory"
+        echo "Navigate to qwer directory"
         echo "Run 'bash uninstall.sh'"
         exit 0
         ;;
