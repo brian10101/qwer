@@ -20,9 +20,9 @@ who_run
 
 #Check if qwer is already installed
 
-check_qwer=$(qwer 2>&1)
+check_qwer=$(qwer 2>&1 | cut -d ':' -f2- | sed 's/^ *//')
 
-if [ "$check_qwer" = "install.sh: line 23: qwer: command not found" ]; then
+if [ "$check_qwer" = "qwer: command not found" ]; then
     echo "- Installing now"
 else 
     echo "X qwer is already installed"

@@ -40,9 +40,9 @@ total_un() {
 #Func checks if qwer was removed from /usr/local/bin/
 
 check_qwer_rm() {
-    check_qwer=$(qwer 2>&1)
+    check_qwer=$(qwer 2>&1 | cut -d ':' -f2- | sed 's/^ *//')
 
-    if [ "$check_qwer" = "uninstall.sh: line 43: qwer: command not found" ]; then
+    if [ "$check_qwer" = "qwer: command not found" ]; then
         echo "- qwer has been removed from /usr/local/bin/"
     else 
         echo "X qwer could not be removed from" /usr/local/bin/
