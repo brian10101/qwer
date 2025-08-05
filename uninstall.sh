@@ -105,7 +105,8 @@ total_un() {
 
         elif [ "$rm_dir_choice" = "n" ]; then
             echo "- Thanks for changing your mind!"
-            echo "-Restoring qwer being deleted from '/usr/local/bin/':"
+            echo "-Restoring qwer deletion from '/usr/local/bin/':"
+            cd $starting_dir
             undo_partial_un            
             echo "- Exiting script"
             exit 0
