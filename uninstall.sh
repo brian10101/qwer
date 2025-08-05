@@ -6,10 +6,6 @@
 
 #Checking who is running the script
 
-#Stops script at error if error happens, like a breaking point
-#set -euo pipefail
-
-
 who_run() {
     crnt_usr=$(whoami)
 
