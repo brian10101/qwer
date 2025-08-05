@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Used to install qwer.sh and it usable from anywhere just by typing 'qwer'
+#Used to install qwer.sh and make it usable from anywhere just by typing 'qwer'
 
 #Checking who is running the script
 
@@ -18,7 +18,7 @@ who_run() {
 
 who_run
 
-#Check if qwer is already installed ny useing command -v to search directories listed in $PATH including /usr/local/bin to see if there is an executable file called qwer
+#Check if qwer is already installed by using command -v to search directories listed in $PATH including /usr/local/bin to see if there is an executable file called qwer
 
 if ! command -v qwer >/dev/null 2>&1; then
     echo "- Installing now"
@@ -28,7 +28,7 @@ else
 fi
 
 
-#Copyig qwer.sh as qwer to /usr/local/bin to make it executable 
+#Copying qwer.sh as qwer to /usr/local/bin to make it executable 
 cp qwer.sh /usr/local/bin/qwer 
 
 chmod +x /usr/local/bin/qwer

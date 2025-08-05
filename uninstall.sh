@@ -41,7 +41,7 @@ check_qwer_rm_msg() {
     elif [ "$check_qwer" = "1" ]; then
         echo "X qwer could not be removed from '/usr/local/bin/'"
     else
-        echo "X Something went wrong qwer could not be removed "
+        echo "X Something went wrong qwer could not be removed"
         
     fi 
 }
@@ -80,17 +80,17 @@ total_un() {
 
     if [ "$check_qwer" = "0" ]; then
         echo "X Cannot run 'Total' since 'Total' needs qwer to be present in 'usr/local/bin/'"
-        echo "Attempting to reinstall qwer in in 'usr/local/bin/' for you."
+        echo "Attempting to reinstall qwer in 'usr/local/bin/' for you:"
         undo_partial_un
-        echo "- Please try to run 'Total' again if automatic reinstall was successful"
-        echo "- Exiting scipt"
+        echo "- Please try to run 'Total Uninstall' again if automatic reinstall was successful"
+        echo "- Exiting script"
         exit 0
     else
         partial_un
         cd $starting_dir
         cd ..
         check_crnt_dir=$(pwd)
-        echo "- Are you sure? (enter 'y' or 'n')"
+        echo "- Are you sure you want to delete ALL of qwer including the install and uninstall scripts? (enter 'y' or 'n')"
         read -r rm_dir_choice
 
         if [ "$rm_dir_choice" = "y" ]; then
@@ -105,7 +105,7 @@ total_un() {
 
         elif [ "$rm_dir_choice" = "n" ]; then
             echo "- Thanks for changing your mind!"
-            echo "-Restoring qwer deletion from '/usr/local/bin/':"
+            echo "- Restoring qwer deletion from '/usr/local/bin/':"
             cd $starting_dir
             undo_partial_un            
             echo "- Exiting script"
@@ -121,7 +121,7 @@ total_un() {
 #Checks if user is root to continue
 who_run
 
-#Asking user what type of uninstall tthey want
+#Asking user what type of uninstall they want
 echo "What type of Uninstall do you want?"
 echo ""
 echo "Options:"
@@ -145,6 +145,8 @@ if ! (( u_choice )); then
 elif [ "$u_choice" -eq "1" ]; then
     partial_un
     check_qwer_rm_msg
+    echo "- To reinstall in '/usr/local/bin/'"
+    echo "- Run install.sh"
 elif [ "$u_choice" -eq "2" ]; then
     total_un
     check_qwer_rm
@@ -158,7 +160,7 @@ elif [ "$u_choice" -eq "3" ]; then
     exit 0
 else
     echo "X Input is NOT a valid option!"
-    echo "- Exiting unistaller."
+    echo "- Exiting uninstaller."
     echo "- Please rerun to try again."
     exit 0
 fi 
