@@ -96,8 +96,50 @@ Input option number (1, 2, or 3):
 <h4>Warning you will get:</h4>
 
 ```
+┌──(root㉿kali)-[/home/kali/qwer]
+└─# bash uninstall.sh
+What type of Uninstall do you want?
 
+Options:
+1. Partial: Removes qwer from '/usr/local/bin/'.
+Use case: To replace the working version of qwer. Example: If you make changes to bash.sh and want to update your working qwer, run this before using install to set your new version.
+
+2. Total: Removes qwer from '/usr/local/bin/' and removes qwer directory
+Use case: To completely delete everything about qwer. Use before downloading new update from repo: https://github.com/brian10101/qwer or Uninstall Completely
+
+3. Exit: Leave this script
+
+Input option number (1, 2, or 3):
+
+2
+- Are you sure you want to delete ALL of qwer including the install and uninstall scripts? (enter 'y' or 'n')
+y
+- 'qwer' directory removed.
+- qwer has been removed from '/usr/local/bin/'
+
+- If you decide to use qwer again please go to https://github.com/brian10101/qwer
+
+*                   *                                  
+ #                 #                                            
+  #               #                                             
+   #             #  ____  *  # #*  *       #  *         ____  *        
+    #     #     #  #    # #  ##    #&##&   *  #&##&    #    # #   
+     #   # #   #  #       #  #     #    #  #  #    #  #       #   
+      # #   # #   &      ##  #     #    #  #  #    #  &      ##  
+       *     *      &__#/ *  *     *    *  *  *    *    &__#/ #  
+                                                              #  
+                                                              #  
+                                                            ,#'  
+                                                      *\#&/*'  
+WARNING: You are currently in a DELETED directory! 
+Please RUN 'cd ..'
+
+This happened becuase the uninstall.sh script deleted the 'qwer' directory(which was this one.)
+No need to panic, just RUN 'cd ..' to return to a valid location
+
+- Thank you for trying qwer!
 ```
+<p>To sum up what to do when you get this warning, just run 'cd ..'.</p>
 
 <h2>End</h2>
 
