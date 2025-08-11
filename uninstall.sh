@@ -14,7 +14,7 @@ who_run() {
     else
         echo "X You are NOT root!"
         echo "- Please run with root since some parts of this script interact with files in '/usr/local/bin/'"
-        exit 0
+        exit 1
     fi
 }
 
@@ -22,11 +22,11 @@ who_run() {
 
 check_qwer_rm() {
     if ! command -v qwer >/dev/null 2>&1; then
-        return 0
+        return 1
         #This means qwer is NOT installed
 
     else 
-        return 1
+        return 0
         #This means qwer IS installed
     fi
 }
@@ -36,9 +36,9 @@ check_qwer_rm() {
 check_qwer_rm_msg() {
     check_qwer_rm
     check_qwer=$?
-    if [ "$check_qwer" = "0" ]; then
+    if [ "$check_qwer" = "1" ]; then
         echo "- qwer has been removed from '/usr/local/bin/'"
-    elif [ "$check_qwer" = "1" ]; then
+    elif [ "$check_qwer" = "0" ]; then
         echo "X qwer could not be removed from '/usr/local/bin/'"
     else
         echo "X Something went wrong qwer could not be removed"
@@ -47,18 +47,18 @@ check_qwer_rm_msg() {
 }
 
 warning_art() {
-    echo "*                   *                                  "
-    echo " #                 #                                            "
-    echo "  #               #                                             "
-    echo "   #             #  ____  *  # #*  *       #  *         ____  *        "
-    echo "    #     #     #  #    # #  ##    #&##&   *  #&##&    #    # #   "
-    echo "     #   # #   #  #       #  #     #    #  #  #    #  #       #   "
-    echo "      # #   # #   &      ##  #     #    #  #  #    #  &      ##  "
-    echo "       *     *      &__#/ *  *     *    *  *  *    *    &__#/ #  "
-    echo "                                                              #  "
-    echo "                                                              #  "
-    echo "                                                            ,#'  "
-    echo "                                                      *\\#&/*'  "
+    echo "*.                  .*                                  "
+    echo " \#,               /#'                         _                   "
+    echo "  \#,             /#'                         |#|                     "
+    echo "   \#,           /#'   __   *  * ,#*  *        ‾   *          __   *  "
+    echo "    \#,   /#    /#'  #'  '#.#  ##'    #.&#&,  ,*.  #.&#&,   #'  '#.#  "
+    echo "     \#, /# #  /#'  #'    '|#  #      #    #  |#|  #    #  #'     |#  "
+    echo "      \#/#   #/#'   &      |#  #      #    #  |#|  #    #  &      ##  "
+    echo "       '*     *'    '&.__#/'*  *      *    *  '*'  *    *  '&.__#/|#  "
+    echo "                                                                  .#  "
+    echo "                                                                  ,#  "
+    echo "                                                                 ,#'  "
+    echo "                                                           *\#&//*'  "
 
 }
 
@@ -78,9 +78,9 @@ undo_partial_un(){
     check_qwer_rm
     check_qwer=$?
 
-    if [ "$check_qwer" = "0" ]; then
+    if [ "$check_qwer" = "1" ]; then
         echo "X Something went wrong. qwer could not be reinstalled in '/usr/local/bin/'"
-    elif [ "$check_qwer" = "1" ]; then
+    elif [ "$check_qwer" = "0" ]; then
         echo "- qwer was successfully reinstalled in '/usr/local/bin/'. You may now continue"
     else
         echo "X Something went wrong qwer could not be reinstalled "
@@ -90,17 +90,19 @@ undo_partial_un(){
 #Total: Removes qwer from /usr/local/bin/ and removes qwer dir
 
 total_un() {
+    #Checking if qwer is installed or not, since to do a Total uninstall, qwer needs to be in /usr/local/bin/ and checking current directory for future reference
     check_qwer_rm
     check_qwer=$?
     starting_dir=$(pwd)
 
-    if [ "$check_qwer" = "0" ]; then
+#Based on the results of check_qwer_rm it either continues with the Total uninstall or exits and displays errors
+    if [ "$check_qwer" = "1" ]; then
         echo "X Cannot run 'Total' since 'Total' needs qwer to be present in 'usr/local/bin/'"
         echo "Attempting to reinstall qwer in 'usr/local/bin/' for you:"
         undo_partial_un
         echo "- Please try to run 'Total Uninstall' again if automatic reinstall was successful"
         echo "- Exiting script"
-        exit 0
+        exit 1
     else
         partial_un
         cd $starting_dir
@@ -109,12 +111,15 @@ total_un() {
         echo "- Are you sure you want to delete ALL of qwer including the install and uninstall scripts? (enter 'y' or 'n')"
         read -r rm_dir_choice
 
+        #Checks if user chose yes or no in confirmation and then does respective action
         if [ "$rm_dir_choice" = "y" ]; then
+            #Checks if the qwer directory is present
             if [ -d "qwer" ]; then
                 rm -rf qwer
                 echo "- 'qwer' directory removed."
             else
                 echo "X 'qwer' directory not found in $check_crnt_dir"
+                echo "- If you renamed it to something else, change it back."
                 echo "- Exiting script"
                 exit 1
             fi
@@ -128,8 +133,11 @@ total_un() {
             exit 0
         else
             echo "X Bad input, only 'y' for yes or 'n' for no"
+            echo "- Restoring qwer deletion from '/usr/local/bin/':"
+            cd $starting_dir
+            undo_partial_un 
             echo "- Exiting script"
-            exit 0
+            exit 1
         fi
     fi
 }
@@ -153,11 +161,12 @@ echo "Input option number (1, 2, or 3):"
 echo ""
 read -r u_choice
 
+#Processing User choice and calling on respective fucns
 if ! (( u_choice )); then
     echo "X Input is NOT a valid option!"
     echo "- Exiting uninstaller."
     echo "- Please rerun to try again."
-    exit 0
+    exit 1
 elif [ "$u_choice" -eq "1" ]; then
     partial_un
     check_qwer_rm_msg
@@ -184,5 +193,5 @@ else
     echo "X Input is NOT a valid option!"
     echo "- Exiting uninstaller."
     echo "- Please rerun to try again."
-    exit 0
+    exit 1
 fi 
