@@ -12,7 +12,7 @@
 
 <h2>Installation</h2>
 
-<p>Since some of the parts of the installation need root privileges I will be doing sudo su to turn into root. But you are free to use sudo instead for parts that need privileges such as when running install.sh</p>
+<p>Since some of the parts of the installation need root privileges I will be doing sudo su to turn into root. But you are free to use sudo instead for parts that need privileges such as when running install.sh or uninstall.sh</p>
 
     git clone https://github.com/brian10101/qwer.git
     cd qwer
