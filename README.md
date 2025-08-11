@@ -119,18 +119,18 @@ y
 
 - If you decide to use qwer again please go to https://github.com/brian10101/qwer
 
-*                   *                                  
- #                 #                                            
-  #               #                                             
-   #             #  ____  *  # #*  *       #  *         ____  *        
-    #     #     #  #    # #  ##    #&##&   *  #&##&    #    # #   
-     #   # #   #  #       #  #     #    #  #  #    #  #       #   
-      # #   # #   &      ##  #     #    #  #  #    #  &      ##  
-       *     *      &__#/ *  *     *    *  *  *    *    &__#/ #  
-                                                              #  
-                                                              #  
-                                                            ,#'  
-                                                      *\#&/*'  
+*.                  .*                                  
+ \#,               /#'                         _                   
+  \#,             /#'                         |#|                     
+   \#,           /#'   __   *  * ,#*  *        ‾   *          __   *  
+    \#,   /#    /#'  #'  '#.#  ##'    #.&#&,  ,*.  #.&#&,   #'  '#.#  
+     \#, /# #  /#'  #'    '|#  #      #    #  |#|  #    #  #'     |#  
+      \#/#   #/#'   &      |#  #      #    #  |#|  #    #  &      ##  
+       '*     *'    '&.__#/'*  *      *    *  '*'  *    *  '&.__#/|#  
+                                                                  .#  
+                                                                  ,#  
+                                                                 ,#'  
+                                                           *\#&//*'  
 WARNING: You are currently in a DELETED directory! 
 Please RUN 'cd ..'
 
@@ -138,6 +138,7 @@ This happened becuase the uninstall.sh script deleted the 'qwer' directory(which
 No need to panic, just RUN 'cd ..' to return to a valid location
 
 - Thank you for trying qwer!
+                              
 ```
 <p>To sum up what to do when you get this warning, just run 'cd ..'.</p>
 
