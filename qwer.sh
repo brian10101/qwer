@@ -35,12 +35,12 @@ case "$1" in
         echo "If you have not changed the location of the 'qwer' directory since the last tine you ran bash install.sh"
         echo "Then the qwer directory is this one:"
 
-        if [ -n "$qwer_location "]; then 
+        if [ -n "$qwer_location" ]; then 
             echo "$qwer_location"
         else
             echo "Last location not saved. This is becuase qwer could not source qwer.conf."
         fi
-        
+
         echo ""
         echo "If it ends in .sh, run: 'bash uninstall.sh'"
         echo "If it ends in .conf, run: nano qwer.conf"
