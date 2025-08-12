@@ -75,8 +75,19 @@ check_qwer_rm_msg() {
 #Partial: Removes qwer from '/usr/local/bin/'
 
 partial_un() {
-    cd /usr/local/bin/
-    rm qwer
+    check_qwer_rm
+    check_qwer=$?
+    if [ "$check_qwer" = "1" ]; then
+        echo "X qwer has already been removed from '/usr/local/bin/'"
+        echo "- To reinstall qwer in '/usr/local/bin/' run 'bash install.sh'."
+        echo "- Exiting unintall.sh."
+        exit 1
+    elif [ "$check_qwer" = "0" ]; then
+        cd /usr/local/bin/
+        rm qwer
+    else
+        echo "Something went spectacularly wrong! Check_qwer only gives 1 for qwer being removed and 0 for qwer being installed, instead you got something else! I gues try to run Partial Uninstall again, but try not to break it!"
+    fi
 
 }
 
@@ -173,6 +184,7 @@ echo ""
 echo "Input option number (1, 2, or 3):"
 echo ""
 read -r u_choice
+echo ""
 
 #Processing User choice and calling on respective fucns
 if ! (( u_choice )); then
@@ -184,7 +196,8 @@ elif [ "$u_choice" -eq "1" ]; then
     partial_un
     check_qwer_rm_msg
     echo "- To reinstall in '/usr/local/bin/'"
-    echo "- Run install.sh"
+    echo "- Run 'bash install.sh'"
+    exit 0
 elif [ "$u_choice" -eq "2" ]; then
     total_un
     check_qwer_rm_msg
@@ -199,6 +212,7 @@ elif [ "$u_choice" -eq "2" ]; then
     echo "No need to panic, just RUN 'cd ..' to return to a valid location"
     echo ""
     echo "- Thank you for trying qwer!"
+    exit 0
 elif [ "$u_choice" -eq "3" ]; then
     echo "- Exited uninstaller"
     exit 0
