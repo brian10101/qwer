@@ -3,7 +3,7 @@
 VERSION="4"
 
 #Below(line 6) install.sh will incert the path of qwer.conf so the configs can be used. Please dont add anything to line 6 to make sure that it is open for the incert.
-source /home/kali/qwer/qwer.conf
+source /place/holder/and/warning/qwer/couldnt/source/qwer.conf
 
 
 # --help and --version options
@@ -20,7 +20,7 @@ case "$1" in
         echo "" 
         echo "How to run: just enter 'qwer'"
         echo ""
-        echo "Reference (qwer output structure)"
+        echo "Reference (qwer output structure):"
         echo "┌──(([machine_name]@[current user])([time AM/PM format]))-[[current directory path]]
 └─ls
 [Directories and files in current directory]"
@@ -32,18 +32,21 @@ case "$1" in
         echo "Using uninstall.sh, install.sh, or qwer.conf:"
         echo ""
         echo "Navigate to the 'qwer' directory"
-        echo "If you have not changed the location of the 'qwer' directory since the last tine you ran bash install.sh"
-        echo "Then the qwer directory is this one:"
+        echo "IF the 'qwer' directory's location has not changed since the last time bash install.sh was ran AND qwer.conf was successfully sourced in qwer.sh"
+        echo ""
+        echo "Then this is the qwer directory:"
 
         if [ -n "$qwer_location" ]; then 
             echo "$qwer_location"
         else
-            echo "Last location not saved. This is becuase qwer could not source qwer.conf."
+            echo "Last location not saved. This is becuase qwer.sh could not source qwer.conf."
         fi
 
         echo ""
-        echo "If it ends in .sh, run: 'bash uninstall.sh'"
-        echo "If it ends in .conf, run: nano qwer.conf"
+        echo "Using uninstall.sh, install.sh, or qwer.conf:"
+        echo ""
+        echo "If it ends in .sh, run: 'bash [file].sh'"
+        echo "If it ends in .conf, run: nano [file].conf"
         exit 0
         ;;
     --version)
