@@ -4,7 +4,7 @@
 
 <h3>What is it?</h3>
 
-<p> qwer is a simple Linux terminal tool used to clear the terminal, return 'ls', current time, and working directory all at once in a user friendly view. It is meant to allow to allow users to navigate and clear their terminal more efficiently</p>
+<p> qwer is a simple Linux terminal tool used to clear the terminal, return 'ls', current time, working directory path, machine name, and current user all at once in a user firendly view. It is meant to allow to allow users to navigate and clear their terminal more efficiently. Additionally, qwer comes with robust built-in install and uninstall scripts that facilitate the user experience..</p>
 
 <h3>Why I made it?</h3>
 
