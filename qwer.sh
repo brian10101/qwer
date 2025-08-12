@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="4"
+VERSION="5"
 
 #Below(line 6) install.sh will incert the path of qwer.conf so the configs can be used. Please dont add anything to line 6 to make sure that it is open for the incert.
 source /place/holder/and/warning/qwer/couldnt/source/qwer.conf
