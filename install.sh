@@ -31,6 +31,29 @@ who_run() {
     fi
 }
 
+#Checks current directory and creates the path to where qwer.conf should be located if all went well. 
+#This is done so qwer in '/usr/local/bin' can source qwer.conf no matter where the 'qwer' dir is located.
+
+find_path_qwer_conf() {
+    crnt_dir=$(pwd)
+    echo "$crnt_dir/qwer.conf"
+}
+
+#Checks if qwer.conf was successfully sourced in qwer.sh
+
+check_qwer_conf_success() {
+    path_qwer_conf=$(find_path_qwer_conf)
+    if grep -q "source $path_qwer_conf" qwer.sh; then
+        echo "- qwer.conf was successfully sourced in qwer.sh"
+    else
+        echo "X qwer.conf was not added to qwer.sh"
+        echo "- This means that any configurations you make in qwer.conf will not affect qwer"
+        echo "- Why it may have happened:"
+        echo "- You may have changed some code or renamed a file"
+        echo ""
+    fi
+}
+
 #Checks if qwer is installed and if its not it will installs qwer.sh in #/usr/local/bin/ and allow all users to execute it 
 
 install(){
@@ -47,11 +70,16 @@ install(){
     #Check if qwer.sh exists in dir or else gives error
 
     if [ -f "./qwer.sh" ]; then
+        #Making it so qwer.conf could be sourced in qwer.sh
+        path_qwer_conf=$(find_path_qwer_conf)
+
+        sed -i "6s|.*|source $path_qwer_conf|" qwer.sh
+
         # Copying qwer.sh as qwer to /usr/local/bin to make it executable 
         cp qwer.sh /usr/local/bin/qwer 
 
         chmod +x /usr/local/bin/qwer
-
+        check_qwer_conf_success
         echo "- qwer has now been installed!"
         echo "- It can now be used by anyone, anywhere, just by typing 'qwer'."
         echo "- For more info, run 'qwer --help'."
@@ -67,9 +95,9 @@ install(){
 
 #Only if '${BASH_SOURCE[0]}'(the name of this script file) is the same as '${0}' (the bash comand that ran the script), then the functions will run, else nothing will run.
 
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
     who_run
+    chck_crnt_dir
     install_art
     install  
 fi
-
