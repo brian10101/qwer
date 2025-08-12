@@ -1,6 +1,7 @@
 #!/bin/bash
 
-#Used to install qwer.sh and make it usable from anywhere just by typing 'qwer'
+#Used to install qwer.sh in #/usr/local/bin/ and allow all users to execute it.
+
 
 #Install ascii art
 
@@ -12,8 +13,8 @@ install_art() {
     echo "     ##      #    #   '*###,     |#|   #'    '|#  |#|  |#|   "
     echo "    ,##,     #    #        &     |#|   &      |#  |#|  |#|   "
     echo " *########*  *    *  '*###*'     '*'   '&.__#/'*  '*'  '*'   "
-    echo "                                                              "
-    echo "                                                              "
+    echo "                                                             "
+    echo "                                                             "
 }
 
 #Checking who is running the script
@@ -30,9 +31,7 @@ who_run() {
     fi
 }
 
-who_run
-
-install_art
+#Checks if qwer is installed and if its not it will installs qwer.sh in #/usr/local/bin/ and allow all users to execute it 
 
 install(){
 
@@ -64,4 +63,13 @@ install(){
     fi
 }
 
-install
+# This ensures that if this script is sourced (by another script such as uninstall.sh) the functions are only loaded by not ran. 
+
+#Only if '${BASH_SOURCE[0]}'(the name of this script file) is the same as '${0}' (the bash comand that ran the script), then the functions will run, else nothing will run.
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    who_run
+    install_art
+    install  
+fi
+

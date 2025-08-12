@@ -2,49 +2,12 @@
 
 #Used to remove qwer from '/usr/local/bin/' or to completely remove qwer and the qwer directory
 
+#Importing aka sourcing the install function from install.sh
+source ./install.sh
+
 #Making functions
 
-#Checking who is running the script
-
-who_run() {
-    crnt_usr=$(whoami)
-
-    if [ "$crnt_usr" = "root" ]; then
-    return 0
-    else
-        echo "X You are NOT root!"
-        echo "- Please run with root since some parts of this script interact with files in '/usr/local/bin/'"
-        exit 1
-    fi
-}
-
-#Checks if qwer was removed from '/usr/local/bin/' by checking if an executable named qwer exists in $PATH
-
-check_qwer_rm() {
-    if ! command -v qwer >/dev/null 2>&1; then
-        return 1
-        #This means qwer is NOT installed
-
-    else 
-        return 0
-        #This means qwer IS installed
-    fi
-}
-
-#Uses check_qwer_rm and then returns a message for the user
-
-check_qwer_rm_msg() {
-    check_qwer_rm
-    check_qwer=$?
-    if [ "$check_qwer" = "1" ]; then
-        echo "- qwer has been removed from '/usr/local/bin/'"
-    elif [ "$check_qwer" = "0" ]; then
-        echo "X qwer could not be removed from '/usr/local/bin/'"
-    else
-        echo "X Something went wrong qwer could not be removed"
-        
-    fi 
-}
+#Ascii art
 
 #Eye catching warning ascii art
 
@@ -80,6 +43,34 @@ uninstall_art() {
 }
 
 
+#Silently checks if qwer was removed from '/usr/local/bin/' by checking if an executable named qwer exists in $PATH
+
+check_qwer_rm() {
+    if ! command -v qwer >/dev/null 2>&1; then
+        return 1
+        #This means qwer is NOT installed
+
+    else 
+        return 0
+        #This means qwer IS installed
+    fi
+}
+
+#Uses check_qwer_rm and then returns a message for the user
+
+check_qwer_rm_msg() {
+    check_qwer_rm
+    check_qwer=$?
+    if [ "$check_qwer" = "1" ]; then
+        echo "- qwer has been removed from '/usr/local/bin/'"
+    elif [ "$check_qwer" = "0" ]; then
+        echo "X qwer could not be removed from '/usr/local/bin/'"
+    else
+        echo "X Something went wrong qwer could not be removed"
+        
+    fi 
+}
+
 
 #Partial: Removes qwer from '/usr/local/bin/'
 
@@ -92,7 +83,8 @@ partial_un() {
 #Undoes partial_un and checks if it was successful
 
 undo_partial_un(){
-    bash install.sh
+    #Calling install func from install.sh
+    install
 
     check_qwer_rm
     check_qwer=$?
