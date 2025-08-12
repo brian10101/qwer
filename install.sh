@@ -31,6 +31,7 @@ who_run() {
     fi
 }
 
+
 #Checks current directory and creates the path to where qwer.conf should be located if all went well. 
 #This is done so qwer in '/usr/local/bin' can source qwer.conf no matter where the 'qwer' dir is located.
 
@@ -39,12 +40,20 @@ find_path_qwer_conf() {
     echo "$crnt_dir/qwer.conf"
 }
 
+#Saves location of the qwer dir in qwer.conf
+save_qwer_dir(){
+    check_crnt_qwer_loct=$(pwd)
+    sed -i "\$s|.*|qwer_location=$check_crnt_qwer_loct|" qwer.conf
+    echo "- Location of qwer dir has been saved to qwer.conf"
+}
+
 #Checks if qwer.conf was successfully sourced in qwer.sh
 
 check_qwer_conf_success() {
     path_qwer_conf=$(find_path_qwer_conf)
     if grep -q "source $path_qwer_conf" qwer.sh; then
         echo "- qwer.conf was successfully sourced in qwer.sh"
+        save_qwer_dir #This is done so qwer could print the last known qwer location if user does qwer --help
     else
         echo "X qwer.conf was not added to qwer.sh"
         echo "- This means that any configurations you make in qwer.conf will not affect qwer"
@@ -54,9 +63,10 @@ check_qwer_conf_success() {
     fi
 }
 
+
 #Checks if qwer is installed and if its not it will installs qwer.sh in #/usr/local/bin/ and allow all users to execute it 
 
-install(){
+install(){  
 
     #Check if qwer is already installed to and then if yes exits
 
@@ -69,7 +79,7 @@ install(){
 
     #Check if qwer.sh exists in dir or else gives error
 
-    if [ -f "./qwer.sh" ]; then
+    if [ -f "./qwer.sh" ]; then ####################################
         #Making it so qwer.conf could be sourced in qwer.sh
         path_qwer_conf=$(find_path_qwer_conf)
 
