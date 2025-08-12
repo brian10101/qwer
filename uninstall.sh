@@ -46,6 +46,8 @@ check_qwer_rm_msg() {
     fi 
 }
 
+#Eye catching warning ascii art
+
 warning_art() {
     echo "*.                  .*                                  "
     echo " \#,               /#'                         _                   "
@@ -61,6 +63,23 @@ warning_art() {
     echo "                                                           *\#&//*'  "
 
 }
+
+#Uninstall ascii art
+
+uninstall_art() {
+
+    echo " ,*       *,         _                    ,*.             ,*. ,*. "
+    echo " |#       #|        |#|                 __|#|__           |#| |#| "
+    echo " |#       #| *       ‾  *       ,####*.*#######*  __   *  |#| |#| "
+    echo " |#       #| #.&#&, ,*. #.&#&, &        '‾|#|‾' #'  '#.#  |#| |#| "
+    echo " .#       #, #    # |#| #    #  '*###,    |#|  #'    '|#  |#| |#| "
+    echo "  .#,   ,#,  #    # |#| #    #       &    |#|  &      |#  |#| |#| "
+    echo "   '*###*'   *    * '*' *    * '*###*'    '*'  '&.__#/'*  '*' '*' "
+    echo "                                                                           "
+    echo "                                                                           "
+}
+
+
 
 #Partial: Removes qwer from '/usr/local/bin/'
 
@@ -144,6 +163,8 @@ total_un() {
 
 #Checks if user is root to continue
 who_run
+
+uninstall_art
 
 #Asking user what type of uninstall they want
 echo "What type of Uninstall do you want?"

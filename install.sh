@@ -2,6 +2,20 @@
 
 #Used to install qwer.sh and make it usable from anywhere just by typing 'qwer'
 
+#Install ascii art
+
+install_art() {
+    echo " *########*                      ,*.              ,*.  ,*.   "
+    echo "    '##'                       __|#|__            |#|  |#|   "
+    echo "     ##      *        ,####*. *#######*   __   *  |#|  |#|   "
+    echo "     ##      #.&#&,  &         '‾|#|‾'  #'  '#.#  |#|  |#|   "
+    echo "     ##      #    #   '*###,     |#|   #'    '|#  |#|  |#|   "
+    echo "    ,##,     #    #        &     |#|   &      |#  |#|  |#|   "
+    echo " *########*  *    *  '*###*'     '*'   '&.__#/'*  '*'  '*'   "
+    echo "                                                              "
+    echo "                                                              "
+}
+
 #Checking who is running the script
 
 who_run() {
@@ -18,29 +32,36 @@ who_run() {
 
 who_run
 
-#Check if qwer is already installed to and then if yes exits
+install_art
 
-if ! command -v qwer >/dev/null 2>&1; then
-    echo "- Installing now"
-else 
-    echo "X qwer is already installed"
-    exit 1
-fi
+install(){
 
-#Check if qwer.sh exists in dir or else gives error
+    #Check if qwer is already installed to and then if yes exits
 
-if [ -f "./qwer.sh" ]; then
-    # Copying qwer.sh as qwer to /usr/local/bin to make it executable 
-    cp qwer.sh /usr/local/bin/qwer 
+    if ! command -v qwer >/dev/null 2>&1; then
+        echo "- Installing now"
+    else 
+        echo "X qwer is already installed"
+        exit 1
+    fi
 
-    chmod +x /usr/local/bin/qwer
+    #Check if qwer.sh exists in dir or else gives error
 
-    echo "- qwer has now been installed!"
-    echo "- It can now be used by anyone, anywhere, just by typing 'qwer'."
-    echo "- For more info, run 'qwer --help'."
-else
-    echo "X Could not install since qwer.sh is not here."
-    echo "If you renamed it to something else, change it back to 'qwer.sh' and try again."
-    echo "Or, if you deleted it, please delete this whole directory and reclone the repo."
-    exit 1
-fi
+    if [ -f "./qwer.sh" ]; then
+        # Copying qwer.sh as qwer to /usr/local/bin to make it executable 
+        cp qwer.sh /usr/local/bin/qwer 
+
+        chmod +x /usr/local/bin/qwer
+
+        echo "- qwer has now been installed!"
+        echo "- It can now be used by anyone, anywhere, just by typing 'qwer'."
+        echo "- For more info, run 'qwer --help'."
+    else
+        echo "X Could not install since qwer.sh is not here."
+        echo "If you renamed it to something else, change it back to 'qwer.sh' and try again."
+        echo "Or, if you deleted it, please delete this whole directory and reclone the repo."
+        exit 1
+    fi
+}
+
+install
