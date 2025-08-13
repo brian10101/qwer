@@ -6,6 +6,8 @@
 #Install ascii art
 
 install_art() {
+    echo ""
+    echo ""
     echo " *########*                      ,*.              ,*.  ,*.   "
     echo "    '##'                       __|#|__            |#|  |#|   "
     echo "     ##      *        ,####*. *#######*   __   *  |#|  |#|   "
@@ -107,7 +109,6 @@ install(){
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
     who_run
-    chck_crnt_dir
     install_art
     install  
 fi

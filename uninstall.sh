@@ -12,6 +12,7 @@ source ./install.sh
 #Eye catching warning ascii art
 
 warning_art() {
+    echo ""
     echo "*.                  .*                                  "
     echo " \#,               /#'                         _                   "
     echo "  \#,             /#'                         |#|                     "
@@ -31,6 +32,7 @@ warning_art() {
 
 uninstall_art() {
 
+    echo ""
     echo " ,*       *,         _                    ,*.             ,*. ,*. "
     echo " |#       #|        |#|                 __|#|__           |#| |#| "
     echo " |#       #| *       ‾  *       ,####*.*#######*  __   *  |#| |#| "

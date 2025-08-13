@@ -27,6 +27,7 @@ Then run
 ```
 ┌──(root@workstation1)-[/home/brian/qwer]
 └─# bash install.sh
+
  *########*                      ,*.              ,*.  ,*.   
     '##'                       __|#|__            |#|  |#|   
      ##      *        ,####*. *#######*   __   *  |#|  |#|   
@@ -81,7 +82,7 @@ All qwer scripts and configs are found in the 'qwer' directory.
 How to run: just enter 'qwer'
 
 Reference (qwer output structure):
-┌──(([machine_name]@[current user])([time AM/PM format]))-[[current directory path]]
+┌──(([machine_name]@[current user])([time AM/PM format]))-[[current dir path]]
 └─ls
 [Directories and files in current directory]
 
@@ -101,6 +102,8 @@ Using uninstall.sh, install.sh, or qwer.conf:
 
 If it ends in .sh, run: 'bash [file].sh'
 If it ends in .conf, run: nano [file].conf
+
+Created by: Brian Calle (https://github.com/brian10101/)
 
 ```
 
@@ -128,7 +131,8 @@ If it ends in .conf, run: nano [file].conf
 ```
 ┌──(brian@workstation1)-[~/qwer]
 └─$ sudo bash uninstall.sh
-[sudo] password for kali: 
+[sudo] password for kali:
+ 
  ,*       *,         _                    ,*.             ,*. ,*. 
  |#       #|        |#|                 __|#|__           |#| |#| 
  |#       #| *       ‾  *       ,####*.*#######*  __   *  |#| |#| 

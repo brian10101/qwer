@@ -21,7 +21,7 @@ case "$1" in
         echo "How to run: just enter 'qwer'"
         echo ""
         echo "Reference (qwer output structure):"
-        echo "┌──(([machine_name]@[current user])([time AM/PM format]))-[[current directory path]]
+        echo "┌──(([machine_name]@[current user])([time AM/PM format]))-[[current dir path]]
 └─ls
 [Directories and files in current directory]"
         echo ""
@@ -47,6 +47,8 @@ case "$1" in
         echo ""
         echo "If it ends in .sh, run: 'bash [file].sh'"
         echo "If it ends in .conf, run: nano [file].conf"
+        echo ""
+        echo "Created by: Brian Calle (https://github.com/brian10101/)"
         exit 0
         ;;
     --version)
